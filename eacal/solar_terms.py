@@ -62,10 +62,10 @@ def converge(d, deg):
 
         if fn * f0 > 0.:  # 中間点は左側と同じ符号 -> 右側に詰める
             d0 = dn
-            f0 = get_angle(d0, deg, nutation_dpsi)
+            f0 = get_diff(d0, deg, nutation_dpsi)
         elif fn * f1 > 0.:  # 中間点は右側と同じ符号 -> 右側に詰める
             d1 = dn
-            f1 = get_angle(d1, deg, nutation_dpsi)
+            f1 = get_diff(d1, deg, nutation_dpsi)
         elif fn == 0:
             return ephem.date(dn)
         else:
@@ -100,3 +100,15 @@ def solar_term_finder_deg(mj, deg, reverse=False):
     d = d0 + 365.25 * angle_to_cover / twopi
     return converge(d, deg)
 
+
+def get_annual_solar_terms(year, boundary_previous=False, boundary_following=False):
+
+    ref = ephem.previous_winter_solstice(str(year)) + 0.01
+
+    result = []
+    for j in range(24):
+        i = (j - 5) % 24
+        d = solar_term_finder(ref, i).datetime()
+        result.append((i, d))
+
+    return result
