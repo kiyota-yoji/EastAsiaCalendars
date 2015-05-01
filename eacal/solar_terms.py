@@ -123,7 +123,7 @@ def get_annual_solar_terms(year, boundary_previous=False, boundary_following=Fal
     return result
 
 
-def get_annual_doyo_days(year):
+def get_annual_jp_doyo_days(year):
     
     ref = ephem.previous_winter_solstice(str(year)) + 0.01
 
