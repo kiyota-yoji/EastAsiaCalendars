@@ -3,6 +3,7 @@
 import ephem
 import nutation
 from math import pi
+from datetime import timedelta
 
 ABERR_CONST = (20.49552 / 3600. / 180. * pi)
 
@@ -133,5 +134,30 @@ def get_annual_doyo_days(year):
         result.append((j, 
                        solar_term_finder_deg(ref, deg_start).datetime(),
                        solar_term_finder_deg(ref, deg_end).datetime()))
+
+    return result
+
+
+def get_annual_jp_seasonal_days(year):
+
+    ref = ephem.previous_winter_solstice(str(year)) + 0.01
+
+    result = []
+    
+    # Setsubun (節分, the day before the start of spring)
+    result.append((0, solar_term_finder(ref, 21).datetime() - timedelta(days=1)))
+
+    # Hachiju-hachi-ya (八十八夜, the 88th night after the start of spring)
+    result.append((1, solar_term_finder(ref, 21).datetime() + timedelta(days=87)))
+
+    # Nyubai (入梅, deg=80)
+    result.append((2, solar_term_finder_deg(ref, 80).datetime()))
+
+    # Hangesho (半夏生, deg=100)
+    result.append((3, solar_term_finder_deg(ref, 100).datetime()))
+
+    # Nihyaku-toka (二百十日, the 210th day after the start of spring)
+    result.append((4, solar_term_finder(ref, 21).datetime() + timedelta(days=209)))
+    
 
     return result
