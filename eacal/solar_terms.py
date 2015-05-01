@@ -111,4 +111,12 @@ def get_annual_solar_terms(year, boundary_previous=False, boundary_following=Fal
         d = solar_term_finder(ref, i).datetime()
         result.append((i, d))
 
+    if boundary_previous:
+        result.insert(0, (18, solar_term_finder(ref, 18, reverse=True).datetime()))
+        result.insert(0, (17, solar_term_finder(ref, 17, reverse=True).datetime()))
+    if boundary_following:
+        ref2 = result[-1][1]
+        result.append((19, solar_term_finder(ref2, 19).datetime()))
+        result.append((20, solar_term_finder(ref2, 20).datetime()))
+
     return result
