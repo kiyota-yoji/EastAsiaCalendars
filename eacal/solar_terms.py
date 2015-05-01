@@ -120,3 +120,18 @@ def get_annual_solar_terms(year, boundary_previous=False, boundary_following=Fal
         result.append((20, solar_term_finder(ref2, 20).datetime()))
 
     return result
+
+
+def get_annual_doyo_days(year):
+    
+    ref = ephem.previous_winter_solstice(str(year)) + 0.01
+
+    result = []
+    for j in range(4):
+        deg_start = (j * 90 + 27 - 90) % 360
+        deg_end = (j * 90 + 45 - 90) % 360
+        result.append((j, 
+                       solar_term_finder_deg(ref, deg_start).datetime(),
+                       solar_term_finder_deg(ref, deg_end).datetime()))
+
+    return result
