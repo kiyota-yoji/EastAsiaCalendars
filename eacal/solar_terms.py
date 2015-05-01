@@ -91,7 +91,6 @@ def solar_term_finder(mj, n, reverse=False):
 def solar_term_finder_deg(mj, deg, reverse=False):
 
     offset = deg * degree
-    d0 = ephem.Date(d0)
     motion = -twopi if reverse else twopi
 
     angle_to_cover = motion - (get_ap_hlon(d0) - offset) % motion
