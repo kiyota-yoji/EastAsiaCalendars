@@ -138,6 +138,20 @@ def get_annual_jp_doyo_days(year):
     return result
 
 
+def get_annual_jp_higan_days(year):
+
+    ref = ephem.previous_winter_solstice(str(year)) + 0.01
+
+    result = []
+    for j in range(2):
+        i = j * 12
+        d = solar_term_finder(ref, i).datetime()
+        result.append((j, 
+                       d - timedelta(days=3),
+                       d + timedelta(days=3)))
+
+    return result
+
 def get_annual_jp_seasonal_days(year):
 
     ref = ephem.previous_winter_solstice(str(year)) + 0.01
