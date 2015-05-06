@@ -2,7 +2,7 @@
 
 import ephem
 import nutation
-from math import pi
+from math import pi, floor
 from datetime import timedelta
 
 ABERR_CONST = (20.49552 / 3600. / 180. * pi)
@@ -106,9 +106,9 @@ def solar_term_finder_adjacent(mj, divisor=30.0, remainder=15.0, reverse=False):
 
     d0 = ephem.Date(mj)
     if reverse:
-        deg = (int((get_ap_hlon(d0) / degree - remainder) / divisor)) * divisor + remainder
+        deg = (floor((get_ap_hlon(d0) / degree - remainder) / divisor)) * divisor + remainder
     else:
-        deg = (int((get_ap_hlon(d0) / degree - remainder) / divisor) + 1) * divisor + remainder
+        deg = (floor((get_ap_hlon(d0) / degree - remainder) / divisor) + 1) * divisor + remainder
     
     angle_to_cover = deg * degree - get_ap_hlon(d0)
 
