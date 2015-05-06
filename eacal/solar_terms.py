@@ -113,7 +113,7 @@ def solar_term_finder_adjacent(mj, divisor=30.0, remainder=15.0, reverse=False):
     angle_to_cover = deg * degree - get_ap_hlon(d0)
 
     d = d0 + 365.25 * angle_to_cover / twopi
-    return converge(d, deg)
+    return (int((deg % 360.0) / 15.0), deg % 360.0, converge(d, deg))
 
 
 def get_annual_solar_terms(year, boundary_previous=False, boundary_following=False):
