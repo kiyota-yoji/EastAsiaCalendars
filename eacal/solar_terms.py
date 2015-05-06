@@ -102,20 +102,6 @@ def solar_term_finder_deg(mj, deg, reverse=False):
     return converge(d, deg)
 
 
-def solar_term_finder_adjacent(mj, divisor=30.0, remainder=15.0, reverse=False):
-
-    d0 = ephem.Date(mj)
-    if reverse:
-        deg = (int((get_ap_hlon(d0) / degree - remainder) / divisor)) * divisor + remainder
-    else:
-        deg = (int((get_ap_hlon(d0) / degree - remainder) / divisor) + 1) * divisor + remainder
-    
-    angle_to_cover = deg * degree - get_ap_hlon(d0)
-
-    d = d0 + 365.25 * angle_to_cover / twopi
-    return converge(d, deg)
-
-
 def get_annual_solar_terms(year, boundary_previous=False, boundary_following=False):
 
     ref = ephem.previous_winter_solstice(str(year)) + 0.01
