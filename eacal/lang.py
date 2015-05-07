@@ -148,5 +148,5 @@ def str_cycle(cycle_id, lang, ja_kun_yomi=False):
         _lang = Lang.JA_P + 1
     else:
         _lang = lang
-    return Cycle[_lang][branch_id]
+    return Cycle[_lang][cycle_id]
     
