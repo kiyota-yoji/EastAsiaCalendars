@@ -2,6 +2,7 @@
 
 import ephem
 import nutation
+import pytz
 from math import pi, floor
 from datetime import timedelta
 
@@ -116,28 +117,28 @@ def solar_term_finder_adjacent(mj, divisor=30.0, remainder=15.0, reverse=False):
     return (int((deg % 360.0) / 15.0), deg % 360.0, converge(d, deg))
 
 
-def get_annual_solar_terms(year, boundary_previous=False, boundary_following=False):
+def annual_solar_terms(year, boundary_previous=False, boundary_following=False):
 
     ref = ephem.previous_winter_solstice(str(year)) + 0.01
 
     result = []
     for j in range(24):
         i = (j - 5) % 24
-        d = solar_term_finder(ref, i).datetime()
+        d = pytz.utc.localize(solar_term_finder(ref, i).datetime())
         result.append((i, d))
 
     if boundary_previous:
-        result.insert(0, (18, solar_term_finder(ref, 18, reverse=True).datetime()))
-        result.insert(0, (17, solar_term_finder(ref, 17, reverse=True).datetime()))
+        result.insert(0, (18, pytz.utc.localize(solar_term_finder(ref, 18, reverse=True).datetime())))
+        result.insert(0, (17, pytz.utc.localize(solar_term_finder(ref, 17, reverse=True).datetime())))
     if boundary_following:
         ref2 = result[-1][1]
-        result.append((19, solar_term_finder(ref2, 19).datetime()))
-        result.append((20, solar_term_finder(ref2, 20).datetime()))
+        result.append((19, pytz.utc.localize(solar_term_finder(ref2, 19).datetime())))
+        result.append((20, pytz.utc.localize(solar_term_finder(ref2, 20).datetime())))
 
     return result
 
 
-def get_annual_jp_doyo_days(year):
+def annual_jp_doyo_days(year):
     
     ref = ephem.previous_winter_solstice(str(year)) + 0.01
 
@@ -145,47 +146,46 @@ def get_annual_jp_doyo_days(year):
     for j in range(4):
         deg_start = (j * 90 + 27 - 90) % 360
         deg_end = (j * 90 + 45 - 90) % 360
-        result.append((j, 
-                       solar_term_finder_deg(ref, deg_start).datetime(),
-                       solar_term_finder_deg(ref, deg_end).datetime()))
+        result.append((j+1, 
+                       pytz.utc.localize(solar_term_finder_deg(ref, deg_start).datetime()),
+                       pytz.utc.localize(solar_term_finder_deg(ref, deg_end).datetime())))
 
     return result
 
 
-def get_annual_jp_higan_days(year):
+def annual_jp_higan_days(year):
 
     ref = ephem.previous_winter_solstice(str(year)) + 0.01
 
     result = []
     for j in range(2):
         i = j * 12
-        d = solar_term_finder(ref, i).datetime()
-        result.append((j, 
+        d = pytz.utc.localize(solar_term_finder(ref, i).datetime())
+        result.append((j+11, 
                        d - timedelta(days=3),
                        d + timedelta(days=3)))
 
     return result
 
-def get_annual_jp_seasonal_days(year):
+def annual_jp_seasonal_days(year):
 
     ref = ephem.previous_winter_solstice(str(year)) + 0.01
 
     result = []
     
     # Setsubun (節分, the day before the start of spring)
-    result.append((0, solar_term_finder(ref, 21).datetime() - timedelta(days=1)))
+    result.append((101, pytz.utc.localize(solar_term_finder(ref, 21).datetime()) - timedelta(days=1)))
 
     # Hachiju-hachi-ya (八十八夜, the 88th night after the start of spring)
-    result.append((1, solar_term_finder(ref, 21).datetime() + timedelta(days=87)))
-
-    # Nyubai (入梅, deg=80)
-    result.append((2, solar_term_finder_deg(ref, 80).datetime()))
-
-    # Hangesho (半夏生, deg=100)
-    result.append((3, solar_term_finder_deg(ref, 100).datetime()))
+    result.append((102, pytz.utc.localize(solar_term_finder(ref, 21).datetime()) + timedelta(days=87)))
 
     # Nihyaku-toka (二百十日, the 210th day after the start of spring)
-    result.append((4, solar_term_finder(ref, 21).datetime() + timedelta(days=209)))
+    result.append((103, pytz.utc.localize(solar_term_finder(ref, 21).datetime() + timedelta(days=209))))
     
+    # Nyubai (入梅, deg=80)
+    result.append((111, pytz.utc.localize(solar_term_finder_deg(ref, 80).datetime())))
+
+    # Hangesho (半夏生, deg=100)
+    result.append((112, pytz.utc.localize(solar_term_finder_deg(ref, 100).datetime())))
 
     return result

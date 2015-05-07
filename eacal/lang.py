@@ -120,6 +120,33 @@ Cycle[Lang.VI] = ['%s %s' % (Stems[Lang.VI][i % 10],
                   for i in range(60)]
 
 
+JPSeasonalDays = {}
+
+JPSeasonalDays[Lang.EN] = {1: u'doyō (winter)',
+                           2: u'doyō (spring)',
+                           3: u'doyō (summer)',
+                           4: u'doyō (autumn)',
+                           11: u'higan (spring)',
+                           12: u'higan (autumn)',
+                           101: u'setsubun (the day before the start of spring)',
+                           102: u'hachijū-hachi-ya (the 88th night after the start of spring)',
+                           103: u'nihyaku-tōka (the 210th day after the start of spring)',
+                           111: u'nyūbai (the beginning of rainy season)',
+                           112: u'hangeshō (the end of field work)'}
+
+JPSeasonalDays[Lang.JA] = {1: u'土用 (冬)',
+                           2: u'土用 (春)',
+                           3: u'土用 (夏)',
+                           4: u'土用 (秋)',
+                           11: u'彼岸 (春)',
+                           12: u'彼岸 (秋)',
+                           101: u'節分',
+                           102: u'八十八夜',
+                           103: u'二百十日',
+                           111: u'入梅',
+                           112: u'半夏生'}
+                    
+
 def str_solar_terms(solar_term_id, lang):
     return SolarTerms[lang][solar_term_id]
 
@@ -149,4 +176,11 @@ def str_cycle(cycle_id, lang, ja_kun_yomi=False):
     else:
         _lang = lang
     return Cycle[_lang][cycle_id]
+    
+def str_jp_seasonal_days(day_id, lang):
+    if lang == Lang.JA:
+        _lang = Lang.JA
+    else:
+        _lang = Lang.EN
+    return JPSeasonalDays[_lang][day_id]
     
