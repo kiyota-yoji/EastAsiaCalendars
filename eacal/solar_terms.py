@@ -19,7 +19,7 @@ half_arcsecond = arcsecond / 2.
 tiny = arcsecond / 360.
 
 
-_sun = ephem.Sun()                    # used for computing equinoxes
+_sun = ephem.Sun()    # for computing equinoxes
 
 
 def get_ap_hlon(mj, nutation_dpsi=None):
@@ -42,18 +42,19 @@ def converge(d, deg):
             diff += twopi
         return diff
 
-    # 視黄経の差を利用して、10秒未満まで詰めていく
+    # converging iterations using the get_diff() function, not fixing nutation
     for i in range(100):
         diff = get_diff(d, deg)
         if abs(diff) < ephem.degrees('0:00:01'):
             break
-        d = d + 365.25 * diff / twopi  # 視黄経との差の値によってdを更新
+        d = d + 365.25 * diff / twopi  # update d using the difference
 
-    # nutationを固定し、二分法によってdiffの正負が逆転する箇所を特定
+    # apply the bisection method, fixing nutation
     nutation_dpsi = nutation.nutation(d)[1]
     d0, d1 = d-ephem.degrees('0:05:00'), d+ephem.degrees('0:05:00')
     f0, f1 = get_diff(d0, deg, nutation_dpsi), get_diff(d1, deg, nutation_dpsi)
     if f0 * f1 > 0.:
+        # TODO: use Exception
         print "warning: f0=%f, f1=%f" % (f0, f1)
         sys.exit(0)
 
@@ -62,15 +63,16 @@ def converge(d, deg):
         dn = (d0 + d1) / 2.
         fn = get_diff(dn, deg, nutation_dpsi)
 
-        if fn * f0 > 0.:  # 中間点は左側と同じ符号 -> 右側に詰める
+        if fn * f0 > 0.:  # the midpoint has the same sign as the left side -> select the right side
             d0 = dn
             f0 = get_diff(d0, deg, nutation_dpsi)
-        elif fn * f1 > 0.:  # 中間点は右側と同じ符号 -> 右側に詰める
+        elif fn * f1 > 0.:  # the midpoint has the same sign as the right side -> select the left side
             d1 = dn
             f1 = get_diff(d1, deg, nutation_dpsi)
         elif fn == 0:
             return ephem.date(dn)
         else:
+            # TODO: use Exception
             print "warning"
             sys.exit(0)
 
