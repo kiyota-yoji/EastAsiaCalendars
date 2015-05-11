@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import cycle
-import solar_terms
-from lang import Lang, str_solar_terms, str_cycle, str_jp_seasonal_days
+from . import cycle
+from . import solar_terms
+from .lang import Lang, str_solar_terms, str_cycle, str_jp_seasonal_days
 
 import pytz
 from datetime import datetime, timedelta

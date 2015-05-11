@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import solar_terms
+from . import solar_terms
 
 import ephem
 import pytz

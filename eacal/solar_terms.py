@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import ephem
-import nutation
+from . import nutation
 import pytz
 from math import pi, floor
 from datetime import timedelta
@@ -55,7 +55,7 @@ def converge(d, deg):
     f0, f1 = get_diff(d0, deg, nutation_dpsi), get_diff(d1, deg, nutation_dpsi)
     if f0 * f1 > 0.:
         # TODO: use Exception
-        print "warning: f0=%f, f1=%f" % (f0, f1)
+        print("warning: f0=%f, f1=%f" % (f0, f1))
         sys.exit(0)
 
     for i in range(20):  # limits the iteration number to 20.
@@ -73,7 +73,7 @@ def converge(d, deg):
             return ephem.date(dn)
         else:
             # TODO: use Exception
-            print "warning"
+            print("warning")
             sys.exit(0)
 
     return ephem.Date((d0*abs(f1)+d1*abs(f0))/(abs(f0) + abs(f1)))
