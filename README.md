@@ -10,7 +10,7 @@ Vietnam, and Japan. This module includes the following.
 
 ## Requirements
 
-- Python 2.7
+- Python 2.x / 3.x
 - [PyEphem](http://rhodesmill.org/pyephem/)
 - [pytz](http://pytz.sourceforge.net/)
 - [jdcal](https://pypi.python.org/pypi/jdcal)
