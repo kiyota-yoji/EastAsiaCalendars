@@ -6,7 +6,9 @@ Vietnam, and Japan. This module includes the following.
 
 - [solar terms](http://en.wikipedia.org/wiki/Solar_term) (節氣, 节气, 節気, 절기, tiết khí)
 - [sexagenary cycle](http://en.wikipedia.org/wiki/Sexagenary_cycle) (六十花甲, 干支, 간지, Gānzhī)
-- [zassetsu](http://ja.wikipedia.org/wiki/%E9%9B%91%E7%AF%80) (Seasonal days in the Japanese calendar)
+- [zassetsu](http://ja.wikipedia.org/wiki/%E9%9B%91%E7%AF%80) (雑節, Seasonal days in the Japanese calendar)
+
+Solar terms are calculated based on the planetary motion computated by [PyEphem](http://rhodesmill.org/pyephem/). The accuracy of solar terms may be within one mitute.
 
 ## Requirements
 
@@ -25,6 +27,7 @@ python setup.py install
 ```
 
 ## Example & Usage
+
 
 ### Calculating solar terms in a year
 
@@ -195,6 +198,49 @@ wood-yin goat|earth-yang tiger|water-yang rax  # 乙未年 戊寅月 壬子日
 (31, 14, 47)    # 31=wood-yin goat, 14=earth-yang tiger, 47=metal-yin pig
 >>> print(c.get_cycle_ymd(datetime(2015, 2, 5), id=True))
 (31, 14, 48)    # 48=water-yang rax
+```
+
+### Calculating Zassetsu
+
+```py
+>>> import eacal
+>>> import pytz
+>>> from datetime import datetime, timedelta
+>>> c = eacal.EACal(tz=pytz.timezone('Asia/Tokyo'))   # for English, in Japan Standard Time
+>>> for x in c.get_annual_jp_seasonal_days(2015):
+...    if len(x) == 4:
+...        print("%3d %s %s %s" % (x[1], datetime.strftime(x[2], "%Y-%m-%d"), datetime.strftime(x[3]-timedelta(days=1), "%Y-%m-%d"), x[0]))
+...    else:
+...        print("%3d %s %s" % (x[1], datetime.strftime(x[2], "%Y-%m-%d"), x[0]))
+  1 2015-01-17 2015-02-03 doyō:winter
+  2 2015-04-17 2015-05-05 doyō:spring
+  3 2015-07-20 2015-08-07 doyō:summer
+  4 2015-10-21 2015-11-07 doyō:autumn
+ 11 2015-03-18 2015-03-24 higan:spring
+ 12 2015-09-20 2015-09-26 higan:autumn
+101 2015-02-03 setsubun:the day before the start of spring
+102 2015-05-02 hachijū-hachi-ya:the 88th night after the start of spring
+103 2015-09-01 nihyaku-tōka:the 210th day after the start of spring
+111 2015-06-11 nyūbai:the beginning of rainy season
+112 2015-07-02 hangeshō:the end of field work
+
+>>> c_j = eacal.EACal(ja=True)   # for Japanese, in Japan Standard Time
+>>> for x in c_j.get_annual_jp_seasonal_days(2015):
+...    if len(x) == 4:
+...        print("%3d %s %s %s" % (x[1], datetime.strftime(x[2], "%Y-%m-%d"), datetime.strftime(x[3]-timedelta(days=1), "%Y-%m-%d"), x[0]))
+...    else:
+...        print("%3d %s %s" % (x[1], datetime.strftime(x[2], "%Y-%m-%d"), x[0]))
+  1 2015-01-17 2015-02-03 土用:冬
+  2 2015-04-17 2015-05-05 土用:春
+  3 2015-07-20 2015-08-07 土用:夏
+  4 2015-10-21 2015-11-07 土用:秋
+ 11 2015-03-18 2015-03-24 彼岸:春
+ 12 2015-09-20 2015-09-26 彼岸:秋
+101 2015-02-03 節分
+102 2015-05-02 八十八夜
+103 2015-09-01 二百十日
+111 2015-06-11 入梅
+112 2015-07-02 半夏生
 ```
 
 

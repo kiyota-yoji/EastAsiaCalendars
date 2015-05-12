@@ -1,7 +1,7 @@
 # EastAsiaCalendars README
 
 本プロジェクトでは、Pythonモジュール ```eacal``` を提供しています。
-```eacal``` では、中国を起源とし、東アジア地域に広まった暦法の計算機能の実装を目指しています。
+```eacal``` は、中国を起源とし、東アジア地域に広まった暦法の計算機能の実装を目指しています。
 現時点では、以下の暦法が実装済みです。
 
 - [二十四節気](http://ja.wikipedia.org/wiki/%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%AF%80%E6%B0%97)
@@ -10,7 +10,8 @@
 
 二十四節気の計算にあたっては、[PyEphem](http://rhodesmill.org/pyephem/)による天体運動計算の結果を利用しています。[国立天文台](http://www.nao.ac.jp/)が発表している[暦要項](http://eco.mtk.nao.ac.jp/koyomi/yoko/)と比較して、概ね1分以内の精度が得られているようです。
 
-結果は無保証です。
+結果は無保証です。モジュールの利用、再配布はGFDLライセンスに従ってください。
+
 
 ## 動作環境
 
@@ -89,13 +90,73 @@ winter solstice           2015-12-21 23:47 EST
 wood-yin goat  # 乙 = 木の弟 = wood-yin, 未 = goat
 ```
 
-#### 2015年4月の月干支
+#### 2015年5月の月干支
 
 ```py
 >>> import eacal
->>> print(eacal.EACal(ja=True).get_cycle_month(2015, 4))
-庚辰
+>>> print(eacal.EACal(ja=True).get_cycle_month(2015, 5))
+辛巳
 >>> print(eacal.EACal().get_cycle_month(2015, 5))
-metal-yang dragon  # 庚 = 金の兄 = metal-yang, 辰 = dragon
+metal-yin snake  # 辛 = 金の弟 = metal-yin, 巳 = snake
 ```
 
+#### 2015年5月10日の日干支
+
+```py
+>>> import eacal
+>>> from datetime import date
+>>> print(eacal.EACal(ja=True).get_cycle_day(date(2015, 5, 10)))
+丙戌
+>>> print(eacal.EACal().get_cycle_day(date(2015, 5, 10)))
+fire-yang dog    # 丙 = 火の兄 = fire-yang, 戌 = dog
+```
+
+#### 年干支、月干支、日干支を同時に取得 (2015年の立春前後)
+
+```py
+>>> import eacal
+>>> from datetime import datetime
+>>> c = eacal.EACal(ja=True)
+>>> print('|'.join(c.get_cycle_ymd(datetime(2015, 2, 3))))
+甲午|丁丑|庚戌
+>>> print('|'.join(c.get_cycle_ymd(datetime(2015, 2, 4))))
+乙未|戊寅|辛亥    # 立春(節入り日)で年干支、月干支が一つ進む (甲午→乙未、丁丑→戊寅)
+>>> print('|'.join(c.get_cycle_ymd(datetime(2015, 2, 5))))
+乙未|戊寅|壬子    # 節入り日以外は日干支のみ一つ進む (辛亥→壬子)
+>>> print(c.get_cycle_ymd(datetime(2015, 2, 3), id=True))
+(30, 13, 46)    # 30=甲午, 13=丁丑, 46=庚戌
+>>> print(c.get_cycle_ymd(datetime(2015, 2, 4), id=True))
+(31, 14, 47)    # 31=乙未, 14=戊寅, 47=辛亥
+>>> print(c.get_cycle_ymd(datetime(2015, 2, 5), id=True))
+(31, 14, 48)    # 48=壬子
+```
+
+### 雑節の計算
+
+```py
+>>> import eacal
+>>> import pytz
+>>> from datetime import datetime, timedelta
+>>> c_j = eacal.EACal(ja=True)
+>>> for x in c_j.get_annual_jp_seasonal_days(2015):
+...    if len(x) == 4:
+...        print("%3d %s %s %s" % (x[1], datetime.strftime(x[2], "%Y-%m-%d"), datetime.strftime(x[3]-timedelta(days=1), "%Y-%m-%d"), x[0]))
+...    else:
+...        print("%3d %s %s" % (x[1], datetime.strftime(x[2], "%Y-%m-%d"), x[0]))
+  1 2015-01-17 2015-02-03 土用:冬
+  2 2015-04-17 2015-05-05 土用:春
+  3 2015-07-20 2015-08-07 土用:夏
+  4 2015-10-21 2015-11-07 土用:秋
+ 11 2015-03-18 2015-03-24 彼岸:春
+ 12 2015-09-20 2015-09-26 彼岸:秋
+101 2015-02-03 節分
+102 2015-05-02 八十八夜
+103 2015-09-01 二百十日
+111 2015-06-11 入梅
+112 2015-07-02 半夏生
+```
+
+## TODO
+
+- 干支暦からの日付の検索
+- 元号
