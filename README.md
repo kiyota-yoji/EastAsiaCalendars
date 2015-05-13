@@ -157,6 +157,8 @@ wood-yin goat   # 乙未
 乙未
 >>> print(eacal.EACal(vi=True).get_cycle_year(2015))
 ất mùi   # 乙未
+>>> print(eacal.EACal().get_cycle_year(2015, id=True))
+31       # 31=wood-yin goat
 ```
 
 Calculating the Cyclic month of May 2015.
@@ -169,18 +171,22 @@ metal-yin snake   # 辛巳
 辛巳
 >>> print(eacal.EACal(ko=True).get_cycle_month(2015, 5))
 신사   # 辛巳
+>>> print(eacal.EACal().get_cycle_month(2015, 5, id=True))
+17    # 17=metal-yin snake
 ```
 
 Calculating the Cyclic day of 10th, May 2015.
 ```py
 >>> import eacal
->>> from datetime import date
->>> print(eacal.EACal().get_cycle_day(date(2015, 5, 10)))
+>>> from datetime import datetime
+>>> print(eacal.EACal().get_cycle_day(datetime(2015, 5, 10)))
 fire-yang dog   # 丙戌
->>> print(eacal.EACal(zh_s=True).get_cycle_day(date(2015, 5, 10)))
+>>> print(eacal.EACal(zh_s=True).get_cycle_day(datetime(2015, 5, 10)))
 丙戌
->>> print(eacal.EACal(vi=True).get_cycle_day(date(2015, 5, 10)))
+>>> print(eacal.EACal(vi=True).get_cycle_day(datetime(2015, 5, 10)))
 bính tuất   # 丙戌
+>>> print(eacal.EACal().get_cycle_day(datetime(2015, 5, 10), id=True))
+22          # 22=fire-yang dog
 ```
 
 Calculating the Cyclic year, month, and day around the start of spring in 2015.

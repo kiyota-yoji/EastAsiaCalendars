@@ -87,6 +87,8 @@ winter solstice           2015-12-21 23:47 EST
 乙未
 >>> print(eacal.EACal().get_cycle_year(2015))
 wood-yin goat  # 乙 = 木の弟 = wood-yin, 未 = goat
+>>> print(eacal.EACal(ja=True).get_cycle_year(2015, id=True))
+31             # 31=乙未
 ```
 
 #### 2015年5月の月干支
@@ -97,17 +99,21 @@ wood-yin goat  # 乙 = 木の弟 = wood-yin, 未 = goat
 辛巳
 >>> print(eacal.EACal().get_cycle_month(2015, 5))
 metal-yin snake  # 辛 = 金の弟 = metal-yin, 巳 = snake
+>>> print(eacal.EACal(ja=True).get_cycle_month(2015, 5, id=True))
+17               # 17=辛巳
 ```
 
 #### 2015年5月10日の日干支
 
 ```py
 >>> import eacal
->>> from datetime import date
->>> print(eacal.EACal(ja=True).get_cycle_day(date(2015, 5, 10)))
+>>> from datetime import datetime
+>>> print(eacal.EACal(ja=True).get_cycle_day(datetime(2015, 5, 10)))
 丙戌
->>> print(eacal.EACal().get_cycle_day(date(2015, 5, 10)))
+>>> print(eacal.EACal().get_cycle_day(datetime(2015, 5, 10)))
 fire-yang dog    # 丙 = 火の兄 = fire-yang, 戌 = dog
+>>> print(eacal.EACal(ja=True).get_cycle_day(datetime(2015, 5, 10), id=True))
+22               # 22=丙戌
 ```
 
 #### 年干支、月干支、日干支を同時に取得 (2015年の立春前後)
