@@ -54,7 +54,6 @@ The solar terms of 2015 for English (in UTC).
     >>> c = eacal.EACal()
     >>> for x in c.get_annual_solar_terms(2015):
     ...     print "%-25s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
-    ... 
     minor cold                2015-01-05 16:20 UTC
     major cold                2015-01-20 09:43 UTC
     start of spring           2015-02-04 03:58 UTC
@@ -212,13 +211,13 @@ in 2015.
     >>> print('|'.join(c.get_cycle_ymd(datetime(2015, 2, 4))))
     wood-yin goat|earth-yang tiger|metal-yin pig   # 乙未年 戊寅月 辛亥日 (cyclic year and cyclic month incremented at the start of spring)
     >>> print('|'.join(c.get_cycle_ymd(datetime(2015, 2, 5))))
-    wood-yin goat|earth-yang tiger|water-yang rax  # 乙未年 戊寅月 壬子日
+    wood-yin goat|earth-yang tiger|water-yang rat  # 乙未年 戊寅月 壬子日
     >>> print(c.get_cycle_ymd(datetime(2015, 2, 3), id=True))
     (30, 13, 46)    # 30=wood-yang horse, 13=fire-yin ox, 46=metal-yang dog
     >>> print(c.get_cycle_ymd(datetime(2015, 2, 4), id=True))
     (31, 14, 47)    # 31=wood-yin goat, 14=earth-yang tiger, 47=metal-yin pig
     >>> print(c.get_cycle_ymd(datetime(2015, 2, 5), id=True))
-    (31, 14, 48)    # 48=water-yang rax
+    (31, 14, 48)    # 48=water-yang rat
 
 Calculating Zassetsu
 ~~~~~~~~~~~~~~~~~~~~

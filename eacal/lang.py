@@ -57,7 +57,7 @@ Stems[Lang.VI] = u'giáp|ất|bính|đinh|mậu|kỷ|canh|tân|nhâm|quý'.split
 
 Branches = {}
 
-Branches[Lang.EN] = 'rax|ox|tiger|rabbit|dragon|snake|horse|goat|monkey|rooster|dog|pig'.split('|')
+Branches[Lang.EN] = 'rat|ox|tiger|rabbit|dragon|snake|horse|goat|monkey|rooster|dog|pig'.split('|')
 
 Branches[Lang.ZH_HANT] = u'子|丑|寅|卯|辰|巳|午|未|申|酉|戌|亥'.split('|')
 Branches[Lang.ZH_HANS] = u'子|丑|寅|卯|辰|巳|午|未|申|酉|戌|亥'.split('|')
