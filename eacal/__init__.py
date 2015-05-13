@@ -44,7 +44,12 @@ class EACal:
         else:
             return str_cycle(cycle.cycle_month(year, month), self.lang)
 
-    def get_cycle_day(self, date, id=False):
+    def get_cycle_day(self, dt, id=False):
+        
+        # if "dt" is a tuple, it is interpreted as (year, month, day)
+        if isinstance(dt, tuple):
+            dt = datetime(dt[0], dt[1], dt[2])
+        
         if id:
             return cycle.cycle_day(dt)
         else:
