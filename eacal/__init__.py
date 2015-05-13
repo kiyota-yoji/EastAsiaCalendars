@@ -32,14 +32,23 @@ class EACal:
             self.lang = Lang.VI
             self.tz = pytz.timezone('Asia/Ho_Chi_Minh')
 
-    def get_cycle_year(self, year):
-        return str_cycle(cycle.cycle_year(year), self.lang)
+    def get_cycle_year(self, year, id=False):
+        if id:
+            return cycle.cycle_year(year)
+        else:
+            return str_cycle(cycle.cycle_year(year), self.lang)
 
-    def get_cycle_month(self, year, month):
-        return str_cycle(cycle.cycle_month(year, month), self.lang)
+    def get_cycle_month(self, year, month, id=False):
+        if id:
+            return cycle.cycle_month(year, month)
+        else:
+            return str_cycle(cycle.cycle_month(year, month), self.lang)
 
-    def get_cycle_day(self, date):
-        return str_cycle(cycle.cycle_day(date), self.lang)
+    def get_cycle_day(self, date, id=False):
+        if id:
+            return cycle.cycle_day(dt)
+        else:
+            return str_cycle(cycle.cycle_day(dt), self.lang)
 
     def get_cycle_ymd(self, dt, id=False):
 
