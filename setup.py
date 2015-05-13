@@ -299,7 +299,7 @@ TODO
 '''
 
 setup(name = 'eacal',
-      version = '0.0.1',
+      version = '0.0.2',
       author = 'Yoji Kiyota',
       author_email = 'kiyotayoji@gmail.com',
       description = 'Python modules for accessing East Asia calendars (Sexagenary cycle, Solar term, etc.)',
