@@ -10,7 +10,7 @@
 
 二十四節気の計算にあたっては、[PyEphem](http://rhodesmill.org/pyephem/)による天体運動計算の結果を利用しています。[国立天文台](http://www.nao.ac.jp/)が発表している[暦要項](http://eco.mtk.nao.ac.jp/koyomi/yoko/)と比較して、概ね1分以内の精度が得られているようです。
 
-結果は無保証です。モジュールの利用、再配布はGFDLライセンスに従ってください。
+本ソフトウェアの利用の結果は無保証です。本ソフトウェアの利用、修正、再配布は[GNU LESSER GENERAL PUBLIC LICENSE Version 3](http://www.gnu.org/licenses/lgpl.html)に従ってください。
 
 
 ## 動作環境
@@ -22,11 +22,10 @@
 
 ## インストール
 
+```pip``` を使うと、必要なパッケージ(PyEphem, pytz, jdcal)もあわせて自動的にインストールされます。
+
 ```bash
-pip install pyephem
-pip install pytz
-pip install jdcal
-python setup.py install
+pip install eacal
 ```
 
 ## 使用例
@@ -156,7 +155,22 @@ fire-yang dog    # 丙 = 火の兄 = fire-yang, 戌 = dog
 112 2015-07-02 半夏生
 ```
 
+## 変更履歴
+
+### Version 0.0.2 (2015-05-13)
+
+- ドキュメントの訂正 (README.md, README_ja.md)
+- setup.py にパッケージ依存関係(install_requires)オプションを追加
+	- pip によるインストールの際、 PyEphem, pytz, jdcal が自動的にインストールされます
+- 地支の英語表現にスペルミスがあったため修正
+
+### Version 0.0.1 (2015-05-12)
+
+- 最初のリリース
+
+
 ## TODO
 
 - 干支暦からの日付の検索
+- 旧暦 (太陰太陽暦)
 - 元号

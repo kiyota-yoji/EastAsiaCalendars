@@ -8,7 +8,9 @@ Vietnam, and Japan. This module includes the following.
 - [sexagenary cycle](http://en.wikipedia.org/wiki/Sexagenary_cycle) (六十花甲, 干支, 간지, Gānzhī)
 - [zassetsu](http://ja.wikipedia.org/wiki/%E9%9B%91%E7%AF%80) (雑節, Seasonal days in the Japanese calendar)
 
-Solar terms are calculated based on the planetary motion computated by [PyEphem](http://rhodesmill.org/pyephem/). The accuracy of solar terms may be within one mitute.
+Solar terms are calculated based on the planetary motion computed by [PyEphem](http://rhodesmill.org/pyephem/). The accuracy of solar terms may be within one minute.
+
+Results of use of this software is not warrantied. You may use, modify, and redistribute this software under [GNU LESSER GENERAL PUBLIC LICENSE Version 3](http://www.gnu.org/licenses/lgpl.html).
 
 ## Requirements
 
@@ -19,15 +21,16 @@ Solar terms are calculated based on the planetary motion computated by [PyEphem]
 
 ## Installation
 
+The required packages (PyEphem, pytz, and jdcal) are automatically installed via ```pip```.
+
 ```bash
-pip install pyephem
-pip install pytz
-pip install jdcal
-python setup.py install
+pip install eacal
 ```
 
 ## Example & Usage
 
+This package supports Chinese (traditional / simplified), Japanese, Korean, Vietnamese, and English (translation).
+Any timezones can be specified using the pytz package.
 
 ### Calculating solar terms in a year
 
@@ -242,8 +245,22 @@ wood-yin goat|earth-yang tiger|water-yang rat  # 乙未年 戊寅月 壬子日
 112 2015-07-02 半夏生
 ```
 
+## History
+
+### Version 0.0.2 (2015-05-13)
+
+- Fixed documents (README.md, README_ja.md)
+- Add install_requires to setup.py
+	- Required packages PyEphem, pytz, and jdcal are automatically installed via pip
+- Fixed a earthly branch in English
+
+### Version 0.0.1 (2015-05-12)
+
+- The first release.
+
 
 ## TODO
 
-- a method for finding days which have a specified sexagenary cycle.
+- a method for finding days which have a specified sexagenary cycle
+- lunisolar calendars
 - regnal years
