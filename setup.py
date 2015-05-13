@@ -297,5 +297,6 @@ setup(name = 'eacal',
           'Programming Language :: Python :: 3.3',
           'Programming Language :: Python :: 3.4',
           'Topic :: Scientific/Engineering :: Astronomy',
-      ]
+      ],
+      install_requires = ['pyephem', 'pytz', 'jdcal']
 )
