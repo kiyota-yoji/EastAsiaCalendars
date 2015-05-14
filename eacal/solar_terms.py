@@ -80,16 +80,9 @@ def converge(d, deg):
 
 
 def solar_term_finder(mj, n, reverse=False):
-    
-    offset = n * twelfth_pi
-    d0 = ephem.Date(mj)
-    motion = -twopi if reverse else twopi
 
-    angle_to_cover = motion - (get_ap_hlon(d0) - offset) % motion
-    if abs(angle_to_cover) < tiny:
-        angle_to_cover = motion
-    d = d0 + 365.25 * angle_to_cover / twopi
-    return converge(d, n * 15)
+    deg = n * twelfth_pi
+    return solar_term_finder_deg(mj, deg, reverse)
 
 
 def solar_term_finder_deg(mj, deg, reverse=False):
