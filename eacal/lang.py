@@ -19,20 +19,20 @@ class Lang:
 
 SolarTerms = {}
 
-SolarTerms[Lang.EN] = 'vernal equinox|clear and bright|grain rain|start of summer|grain full|grain in ear|summer solstice|minor heat|major heat|start of autumn|limit of heat|white dew|autumnal equinox|cold dew|frost descent|start of winter|minor snow|major snow|winter solstice|minor cold|major cold|start of spring|rain water|awakening of insects'.split('|')
+SolarTerms[Lang.EN] = 'start of spring|rain water|awakening of insects|vernal equinox|clear and bright|grain rain|start of summer|grain full|grain in ear|summer solstice|minor heat|major heat|start of autumn|limit of heat|white dew|autumnal equinox|cold dew|frost descent|start of winter|minor snow|major snow|winter solstice|minor cold|major cold'.split('|')
 
-SolarTerms[Lang.ZH_HANT] = u'春分|清明|穀雨|立夏|小滿|芒種|夏至|小暑|大暑|立秋|處暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒|立春|雨水|驚蟄'.split('|')
-SolarTerms[Lang.ZH_HANS] = u'春分|清明|谷雨|立夏|小满|芒种|夏至|小暑|大暑|立秋|处暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒|立春|雨水|惊蛰'.split('|')
-SolarTerms[Lang.ZH_P] = u'chūnfēn|qīngmíng|gǔyǔ|lìxià|xiǎomǎn|mángzhòng|xiàzhì|xiǎoshǔ|dàshǔ|lìqiū|chǔshǔ|báilù|qiūfēn|hánlù|shuāngjiàng|lìdōng|xiǎoxuě|dàxuě|dōngzhì|xiǎohán|dàhán|lìchūn|yǔshuǐ|jīngzhé'.split('|')
+SolarTerms[Lang.ZH_HANT] = u'立春|雨水|驚蟄|春分|清明|穀雨|立夏|小滿|芒種|夏至|小暑|大暑|立秋|處暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒'.split('|')
+SolarTerms[Lang.ZH_HANS] = u'立春|雨水|惊蛰|春分|清明|谷雨|立夏|小满|芒种|夏至|小暑|大暑|立秋|处暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒'.split('|')
+SolarTerms[Lang.ZH_P] = u'lìchūn|yǔshuǐ|jīngzhé|chūnfēn|qīngmíng|gǔyǔ|lìxià|xiǎomǎn|mángzhòng|xiàzhì|xiǎoshǔ|dàshǔ|lìqiū|chǔshǔ|báilù|qiūfēn|hánlù|shuāngjiàng|lìdōng|xiǎoxuě|dàxuě|dōngzhì|xiǎohán|dàhán'.split('|')
 
-SolarTerms[Lang.JA] = u'春分|清明|穀雨|立夏|小満|芒種|夏至|小暑|大暑|立秋|処暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒|立春|雨水|啓蟄'.split('|')
+SolarTerms[Lang.JA] = u'立春|雨水|啓蟄|春分|清明|穀雨|立夏|小満|芒種|夏至|小暑|大暑|立秋|処暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒'.split('|')
 SolarTerms[Lang.JA_P] = u'risshun|usui|keichitsu|shunbun|seimei|kokuu|rikka|shōman|bōshu|geshi|shōsho|taisho|risshū|shosho|hakuro|shūbun|kanro|sōkō|rittō|shōsetsu|taisetsu|tōji|shōkan|daikan'.split('|')
 
-SolarTerms[Lang.KO] = u'춘분|청명|곡우|입하|소만|망종|하지|소서|대서|입추|처서|백로|추분|한로|상강|입동|소설|대설|동지|소한|대한|입춘|우수|경칩'.split('|')
-SolarTerms[Lang.KO_HANJA] = u'春分|清明|穀雨|立夏|小滿|芒種|夏至|小暑|大暑|立秋|處暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒|立春|雨水|驚蟄'.split('|')
-SolarTerms[Lang.KO_P] = u'chunbun|cheongmyeong|gogu|ipha|soman|mangjong|haji|soseo|daeseo|ipchu|cheoseo|baengno|chubun|hallo|sanggang|ipdong|soseol|daeseol|dongji|sohan|daehan|ipchun|usu|gyeongchip'.split('|')
+SolarTerms[Lang.KO] = u'입춘|우수|경칩|춘분|청명|곡우|입하|소만|망종|하지|소서|대서|입추|처서|백로|추분|한로|상강|입동|소설|대설|동지|소한|대한'.split('|')
+SolarTerms[Lang.KO_HANJA] = u'立春|雨水|驚蟄|春分|清明|穀雨|立夏|小滿|芒種|夏至|小暑|大暑|立秋|處暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒'.split('|')
+SolarTerms[Lang.KO_P] = u'ipchun|usu|gyeongchip|chunbun|cheongmyeong|gogu|ipha|soman|mangjong|haji|soseo|daeseo|ipchu|cheoseo|baengno|chubun|hallo|sanggang|ipdong|soseol|daeseol|dongji|sohan|daehan'.split('|')
 
-SolarTerms[Lang.VI] = u'Xuân phân|Thanh minh|Cốc vũ|Lập hạ|Tiểu mãn|Mang chủng|Hạ chí|Tiểu thử|Đại thử|Lập thu|Xử thử|Bạch lộ|Thu phân|Hàn lộ|Sương giáng|Lập đông|Tiểu tuyết|Đại tuyết|Đông chí|Tiểu hàn|Đại hàn|Lập xuân|Vũ thủy|Kinh trập'.split('|')
+SolarTerms[Lang.VI] = u'Lập xuân|Vũ thủy|Kinh trập|Xuân phân|Thanh minh|Cốc vũ|Lập hạ|Tiểu mãn|Mang chủng|Hạ chí|Tiểu thử|Đại thử|Lập thu|Xử thử|Bạch lộ|Thu phân|Hàn lộ|Sương giáng|Lập đông|Tiểu tuyết|Đại tuyết|Đông chí|Tiểu hàn|Đại hàn'.split('|')
 
 
 Stems = {}

@@ -81,7 +81,7 @@ def converge(d, deg):
 
 def solar_term_finder(mj, n, reverse=False):
 
-    deg = n * 15
+    deg = ((n + 21) % 24) * 15
     return solar_term_finder_deg(mj, deg, reverse)
 
 
@@ -118,17 +118,17 @@ def annual_solar_terms(year, boundary_previous=False, boundary_following=False):
 
     result = []
     for j in range(24):
-        i = (j - 5) % 24
+        i = (j - 2) % 24
         d = pytz.utc.localize(solar_term_finder(ref, i).datetime())
         result.append((i, d))
 
     if boundary_previous:
-        result.insert(0, (18, pytz.utc.localize(solar_term_finder(ref, 18, reverse=True).datetime())))
-        result.insert(0, (17, pytz.utc.localize(solar_term_finder(ref, 17, reverse=True).datetime())))
+        result.insert(0, (21, pytz.utc.localize(solar_term_finder(ref, 21, reverse=True).datetime())))
+        result.insert(0, (20, pytz.utc.localize(solar_term_finder(ref, 20, reverse=True).datetime())))
     if boundary_following:
         ref2 = result[-1][1]
-        result.append((19, pytz.utc.localize(solar_term_finder(ref2, 19).datetime())))
-        result.append((20, pytz.utc.localize(solar_term_finder(ref2, 20).datetime())))
+        result.append((22, pytz.utc.localize(solar_term_finder(ref2, 22).datetime())))
+        result.append((23, pytz.utc.localize(solar_term_finder(ref2, 23).datetime())))
 
     return result
 
@@ -154,7 +154,7 @@ def annual_jp_higan_days(year):
 
     result = []
     for j in range(2):
-        i = j * 12
+        i = j * 12 + 3
         d = pytz.utc.localize(solar_term_finder(ref, i).datetime())
         result.append((j+11, 
                        d - timedelta(days=3),
@@ -169,13 +169,13 @@ def annual_jp_seasonal_days(year):
     result = []
     
     # Setsubun (節分, the day before the start of spring)
-    result.append((101, pytz.utc.localize(solar_term_finder(ref, 21).datetime()) - timedelta(days=1)))
+    result.append((101, pytz.utc.localize(solar_term_finder(ref, 0).datetime()) - timedelta(days=1)))
 
     # Hachiju-hachi-ya (八十八夜, the 88th night after the start of spring)
-    result.append((102, pytz.utc.localize(solar_term_finder(ref, 21).datetime()) + timedelta(days=87)))
+    result.append((102, pytz.utc.localize(solar_term_finder(ref, 0).datetime()) + timedelta(days=87)))
 
     # Nihyaku-toka (二百十日, the 210th day after the start of spring)
-    result.append((103, pytz.utc.localize(solar_term_finder(ref, 21).datetime() + timedelta(days=209))))
+    result.append((103, pytz.utc.localize(solar_term_finder(ref, 0).datetime() + timedelta(days=209))))
     
     # Nyubai (入梅, deg=80)
     result.append((111, pytz.utc.localize(solar_term_finder_deg(ref, 80).datetime())))
