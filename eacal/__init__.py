@@ -2,7 +2,7 @@
 
 from . import cycle
 from . import solar_terms
-from .lang import Lang, str_solar_terms, str_cycle, str_jp_seasonal_days
+from .lang import Lang, str_solar_terms, str_cycle, str_jp_seasonal_days, id_solar_terms
 
 import pytz
 from datetime import datetime, timedelta
@@ -124,4 +124,17 @@ class EACal:
 
         return result
             
+
+    def get_specified_solar_term(self, year, st):
+
+        if isinstance(st, int):
+            st_id = st
+            st_str = str_solar_terms(st_id, self.lang)
+        else:
+            # find st_id by searching
+            st_id = id_solar_terms(st, self.lang)
+            st_str = str_solar_terms(st_id, self.lang)
             
+        st_dt_utc = solar_terms.specified_solar_term(year, st_id)
+        st_dt_local = st_dt_utc.astimezone(self.tz)
+        return (st_str, st_id, st_dt_local)

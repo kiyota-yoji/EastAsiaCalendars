@@ -184,3 +184,6 @@ def str_jp_seasonal_days(day_id, lang):
         _lang = Lang.EN
     return JPSeasonalDays[_lang][day_id]
     
+def id_solar_terms(solar_term_name, lang):
+    return SolarTerms[lang].index(solar_term_name)
+

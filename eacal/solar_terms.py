@@ -132,6 +132,11 @@ def annual_solar_terms(year, boundary_previous=False, boundary_following=False):
 
     return result
 
+def specified_solar_term(year, solar_term_id):
+
+    ref = ephem.previous_winter_solstice(str(year)) + 37.5   # the reference point is between "major cold" and "start of spring"
+    return pytz.utc.localize(solar_term_finder(ref, solar_term_id).datetime())
+    
 
 def annual_jp_doyo_days(year):
     
