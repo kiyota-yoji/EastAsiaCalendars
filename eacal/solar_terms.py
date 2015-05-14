@@ -81,7 +81,7 @@ def converge(d, deg):
 
 def solar_term_finder(mj, n, reverse=False):
 
-    deg = n * twelfth_pi
+    deg = n * 15
     return solar_term_finder_deg(mj, deg, reverse)
 
 
