@@ -28,6 +28,7 @@
 pip install eacal
 ```
 
+
 ## 使用例
 
 日本語のほか、中国語(繁体字・簡体字)、朝鮮語・韓国語、ベトナム語、英語(訳語)に対応しています。タイムゾーンも指定可能です。
@@ -44,32 +45,32 @@ pip install eacal
 >>> from datetime import datetime
 >>> c_j = eacal.EACal(ja=True)    # 日本語、日本標準時(JST)
 >>> for x in c_j.get_annual_solar_terms(2015):
-...     print "%s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
-小寒 2015-01-06 01:20 JST
-大寒 2015-01-20 18:43 JST
-立春 2015-02-04 12:58 JST
-雨水 2015-02-19 08:49 JST
-啓蟄 2015-03-06 06:55 JST
-春分 2015-03-21 07:45 JST
+...     print "%2d %s %s" % (x[1], x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+22 小寒 2015-01-06 01:20 JST
+23 大寒 2015-01-20 18:43 JST
+ 0 立春 2015-02-04 12:58 JST
+ 1 雨水 2015-02-19 08:49 JST
+ 2 啓蟄 2015-03-06 06:55 JST
+ 3 春分 2015-03-21 07:45 JST
 ...
-大雪 2015-12-07 19:53 JST
-冬至 2015-12-22 13:47 JST
+20 大雪 2015-12-07 19:53 JST
+21 冬至 2015-12-22 13:47 JST
 
 >>> c_u = eacal.EACal(lang=Lang.EN, tz=pytz.timezone('America/New_York'))  # 英語、米国東部標準時(EST)
 >>> for x in c_u.get_annual_solar_terms(2015):
-...     print "%-25s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
-minor cold                2015-01-05 11:20 EST
-major cold                2015-01-20 04:43 EST
-start of spring           2015-02-03 22:58 EST
-rain water                2015-02-18 18:49 EST
-awakening of insects      2015-03-05 16:55 EST
-vernal equinox            2015-03-20 18:45 EDT  # ここから夏時間(EDT)
+...     print "%2d %-25s %s" % (x[1], x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+22 minor cold                2015-01-05 11:20 EST
+23 major cold                2015-01-20 04:43 EST
+ 0 start of spring           2015-02-03 22:58 EST
+ 1 rain water                2015-02-18 18:49 EST
+ 2 awakening of insects      2015-03-05 16:55 EST
+ 3 vernal equinox            2015-03-20 18:45 EDT  # ここから夏時間(EDT)
 ...
-frost descent             2015-10-23 13:46 EDT  # ここまで夏時間
-start of winter           2015-11-07 12:58 EST
-minor snow                2015-11-22 10:25 EST
-major snow                2015-12-07 05:53 EST
-winter solstice           2015-12-21 23:47 EST
+17 frost descent             2015-10-23 13:46 EDT  # ここまで夏時間
+18 start of winter           2015-11-07 12:58 EST
+19 minor snow                2015-11-22 10:25 EST
+20 major snow                2015-12-07 05:53 EST
+21 winter solstice           2015-12-21 23:47 EST
 ```
 
 ### 干支暦の計算
@@ -163,6 +164,14 @@ fire-yang dog    # 丙 = 火の兄 = fire-yang, 戌 = dog
 
 ## 変更履歴
 
+### Version 0.0.3 (2015-05-17)
+
+- "id"オプションを干支暦用メソッド get_cycle_year(), get_cycle_month(), get_cycle_day() に追加
+	- 干支のID番号(0-59)を取得可能に
+- solar_term_finder() の実装を改善
+- 二十四節気のID番号体系を変更
+	- 立春から開始 (0=立春 → 23=大寒)
+
 ### Version 0.0.2 (2015-05-13)
 
 - ドキュメントの訂正 (README.md, README_ja.md)
@@ -180,3 +189,6 @@ fire-yang dog    # 丙 = 火の兄 = fire-yang, 戌 = dog
 - 干支暦からの日付の検索
 - 旧暦 (太陰太陽暦)
 - 元号
+- 中国語圏での年干支の扱いへの対応
+- ユニットテストの実装
+- Windows環境でのインストール手順の記載

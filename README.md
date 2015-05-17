@@ -41,16 +41,16 @@ The solar terms of 2015 for English (in UTC).
 >>> from datetime import datetime
 >>> c = eacal.EACal()
 >>> for x in c.get_annual_solar_terms(2015):
-...     print "%-25s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
-minor cold                2015-01-05 16:20 UTC
-major cold                2015-01-20 09:43 UTC
-start of spring           2015-02-04 03:58 UTC
-rain water                2015-02-18 23:49 UTC
-awakening of insects      2015-03-05 21:55 UTC
-vernal equinox            2015-03-20 22:45 UTC
+...     print "%2d %-25s %s" % (x[1], x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+22 minor cold                2015-01-05 16:20 UTC
+23 major cold                2015-01-20 09:43 UTC
+ 0 start of spring           2015-02-04 03:58 UTC
+ 1 rain water                2015-02-18 23:49 UTC
+ 2 awakening of insects      2015-03-05 21:55 UTC
+ 3 vernal equinox            2015-03-20 22:45 UTC
 ...
-major snow                2015-12-07 10:53 UTC
-winter solstice           2015-12-22 04:47 UTC
+20 major snow                2015-12-07 10:53 UTC
+21 winter solstice           2015-12-22 04:47 UTC
 ```
 
 The solar terms of 2015, for Traditional Chinese (in Hong Kong Time), Simplified Chinese (in Chinese Standard Time), Japanese (in Japan Standard Time), Korean (in Korea Standard Time), and Vietnamese (in Indochina Time).
@@ -60,20 +60,26 @@ The solar terms of 2015, for Traditional Chinese (in Hong Kong Time), Simplified
 >>> from datetime import datetime
 >>> c_t = eacal.EACal(zh_t=True)
 >>> for x in c_t.get_annual_solar_terms(2015):
-...     print "%s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
-小寒 2015-01-06 00:20 HKT
-大寒 2015-01-20 17:43 HKT
-立春 2015-02-04 11:58 HKT
-雨水 2015-02-19 07:49 HKT
-驚蟄 2015-03-06 05:55 HKT
-春分 2015-03-21 06:45 HKT
+...     print "%2d %s %s" % (x[1], x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+22 小寒 2015-01-06 00:20 HKT
+23 大寒 2015-01-20 17:43 HKT
+ 0 立春 2015-02-04 11:58 HKT
+ 1 雨水 2015-02-19 07:49 HKT
+ 2 驚蟄 2015-03-06 05:55 HKT
+ 3 春分 2015-03-21 06:45 HKT
 ...
-大雪 2015-12-07 18:53 HKT
-冬至 2015-12-22 12:47 HKT
+20 大雪 2015-12-07 18:53 HKT
+21 冬至 2015-12-22 12:47 HKT
 
 >>> c_s = eacal.EACal(zh_s=True)
 >>> for x in c_s.get_annual_solar_terms(2015):
-...     print "%s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+...     print "%2d %s %s" % (x[1], x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+22 小寒 2015-01-06 00:20 CST
+23 大寒 2015-01-20 17:43 CST
+ 0 立春 2015-02-04 11:58 CST
+ 1 雨水 2015-02-19 07:49 CST
+ 2 惊蛰 2015-03-06 05:55 CST
+ 3 春分 2015-03-21 06:45 CST
 小寒 2015-01-06 00:20 CST
 大寒 2015-01-20 17:43 CST
 立春 2015-02-04 11:58 CST
@@ -81,47 +87,47 @@ The solar terms of 2015, for Traditional Chinese (in Hong Kong Time), Simplified
 惊蛰 2015-03-06 05:55 CST
 春分 2015-03-21 06:45 CST
 ...
-大雪 2015-12-07 18:53 CST
-冬至 2015-12-22 12:47 CST
+20 大雪 2015-12-07 18:53 CST
+21 冬至 2015-12-22 12:47 CST
 
 >>> c_j = eacal.EACal(ja=True)
 >>> for x in c_j.get_annual_solar_terms(2015):
-...     print "%s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
-小寒 2015-01-06 01:20 JST
-大寒 2015-01-20 18:43 JST
-立春 2015-02-04 12:58 JST
-雨水 2015-02-19 08:49 JST
-啓蟄 2015-03-06 06:55 JST
-春分 2015-03-21 07:45 JST
+...     print "%2d %s %s" % (x[1], x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+22 小寒 2015-01-06 01:20 JST
+23 大寒 2015-01-20 18:43 JST
+ 0 立春 2015-02-04 12:58 JST
+ 1 雨水 2015-02-19 08:49 JST
+ 2 啓蟄 2015-03-06 06:55 JST
+ 3 春分 2015-03-21 07:45 JST
 ...
-大雪 2015-12-07 19:53 JST
-冬至 2015-12-22 13:47 JST
+20 大雪 2015-12-07 19:53 JST
+21 冬至 2015-12-22 13:47 JST
 
 >>> c_k = eacal.EACal(ko=True)
 >>> for x in c_k.get_annual_solar_terms(2015):
-...     print "%s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
-소한 2015-01-06 01:20 KST
-대한 2015-01-20 18:43 KST
-입춘 2015-02-04 12:58 KST
-우수 2015-02-19 08:49 KST
-경칩 2015-03-06 06:55 KST
-춘분 2015-03-21 07:45 KST
+...     print "%2d %s %s" % (x[1], x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+22 소한 2015-01-06 01:20 KST
+23 대한 2015-01-20 18:43 KST
+ 0 입춘 2015-02-04 12:58 KST
+ 1 우수 2015-02-19 08:49 KST
+ 2 경칩 2015-03-06 06:55 KST
+ 3 춘분 2015-03-21 07:45 KST
 ...
-대설 2015-12-07 19:53 KST
-동지 2015-12-22 13:47 KST
+20 대설 2015-12-07 19:53 KST
+21 동지 2015-12-22 13:47 KST
 
 >>> c_v = eacal.EACal(vi=True)
 >>> for x in c_v.get_annual_solar_terms(2015):
-...     print "%-12s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
-Tiểu hàn     2015-01-05 23:20 ICT
-Đại hàn      2015-01-20 16:43 ICT
-Lập xuân     2015-02-04 10:58 ICT
-Vũ thủy      2015-02-19 06:49 ICT
-Kinh trập    2015-03-06 04:55 ICT
-Xuân phân    2015-03-21 05:45 ICT
+...     print "%2d %-12s %s" % (x[1], x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+22 Tiểu hàn     2015-01-05 23:20 ICT
+23 Đại hàn      2015-01-20 16:43 ICT
+ 0 Lập xuân     2015-02-04 10:58 ICT
+ 1 Vũ thủy      2015-02-19 06:49 ICT
+ 2 Kinh trập    2015-03-06 04:55 ICT
+ 3 Xuân phân    2015-03-21 05:45 ICT
 ...
-Đại tuyết    2015-12-07 17:53 ICT
-Đông chí     2015-12-22 11:47 ICT
+20 Đại tuyết    2015-12-07 17:53 ICT
+21 Đông chí     2015-12-22 11:47 ICT
 ```
 
 The solar terms of 2015 in North American Eastern Time Zone.
@@ -132,16 +138,16 @@ The solar terms of 2015 in North American Eastern Time Zone.
 >>> from datetime import datetime
 >>> c = eacal.EACal(tz=pytz.timezone('America/New_York'))
 >>> for x in c.get_annual_solar_terms(2015):
-...     print "%-25s %s" % (x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
-minor cold                2015-01-05 11:20 EST
-major cold                2015-01-20 04:43 EST
-start of spring           2015-02-03 22:58 EST
-rain water                2015-02-18 18:49 EST
-awakening of insects      2015-03-05 16:55 EST
-vernal equinox            2015-03-20 18:45 EDT  # in DST
+...     print "%2d %-25s %s" % (x[1], x[0], datetime.strftime(x[2], "%Y-%m-%d %H:%M %Z"))
+22 minor cold                2015-01-05 11:20 EST
+23 major cold                2015-01-20 04:43 EST
+ 0 start of spring           2015-02-03 22:58 EST
+ 1 rain water                2015-02-18 18:49 EST
+ 2 awakening of insects      2015-03-05 16:55 EST
+ 3 vernal equinox            2015-03-20 18:45 EDT  # in DST
 ...
-major snow                2015-12-07 05:53 EST
-winter solstice           2015-12-21 23:47 EST
+20 major snow                2015-12-07 05:53 EST
+21 winter solstice           2015-12-21 23:47 EST
 ```
 
 
@@ -253,11 +259,19 @@ wood-yin goat|earth-yang tiger|water-yang rat  # 乙未年 戊寅月 壬子日
 
 ## History
 
+### Version 0.0.3 (2015-05-17)
+
+- Add an "id" option to get_cycle_year(), get_cycle_month(), and get_cycle_day()
+	- this option enabled the methods to return IDs (0-59) of the sexagenary cycle.
+- Refine implementations of solar_term_finder()
+- Renumber IDs of solar terms
+	- begins at "start of spring" (0=start of spring - 23=major cold)
+
 ### Version 0.0.2 (2015-05-13)
 
 - Fixed documents (README.md, README_ja.md)
 - Add install_requires to setup.py
-	- Required packages PyEphem, pytz, and jdcal are automatically installed via pip
+	- required packages PyEphem, pytz, and jdcal are automatically installed via pip
 - Fixed a earthly branch in English
 
 ### Version 0.0.1 (2015-05-12)
@@ -270,3 +284,6 @@ wood-yin goat|earth-yang tiger|water-yang rat  # 乙未年 戊寅月 壬子日
 - a method for finding days which have a specified sexagenary cycle
 - lunisolar calendars
 - regnal years
+- adapt to Chinese cycle years
+- write unit tests
+- documentation for Windows environments
