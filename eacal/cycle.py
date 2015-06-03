@@ -34,3 +34,34 @@ def search_cycle_year(cy, year_from=1800, year_to=datetime.now().year+1):
         year += 60
         if year > year_to: break
     return result
+
+def search_cycle_month(cy, cm, year_from=1800, year_to=datetime.now().year+1):
+    result = []
+    year = year_from
+    if cy is None:
+        while True:
+            for month in range(1, 12+1):
+                if cycle_month(year, month) == cm:
+                    result.append((year, month))
+                    year_from = year
+                    for year in range(year_from, year_to+1, 5):
+                        result.append((year, month))
+                    break
+            year += 1
+            if year > year_to: break
+    else:
+        while True:
+            for year in range(year_from, year_to+1):
+                # 1月は昨年扱い
+                if cycle_year(year-1) == cy and cycle_month(year, 1) == cm:
+                    result.append((year, 1))
+                    year_from = year
+                    for year in range(year_from, year_to+1, 60):
+                        result.append((year, 1))
+                    break
+            year += 1
+            if year > year_to: break
+                
+                
+    return result
+
