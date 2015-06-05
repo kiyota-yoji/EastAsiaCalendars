@@ -5,7 +5,7 @@ from . import solar_terms
 import ephem
 import pytz
 import jdcal
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, date
 
 def cycle_year(year):
     return (year - 4) % 60
@@ -51,3 +51,14 @@ def search_cycle_month(cm, year_from=1800, year_to=datetime.now().year+1):
                 
     return result
 
+def search_cycle_day(cd, year_from=datetime.now().year-1, year_to=datetime.now().year+1):
+    result = []
+    day_from = date(year_from, 1, 1)
+    day_to = date(year_to+1, 1, 1) - timedelta(days=1)
+    day = day_from + timedelta(days=((cd - cycle_day(day_from)) % 60))
+    while True:
+        result.append(day)
+        day += timedelta(days=60)
+        if day > day_to: break
+
+    return result
