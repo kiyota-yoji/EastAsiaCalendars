@@ -62,3 +62,24 @@ def search_cycle_day(cd, year_from=datetime.now().year-1, year_to=datetime.now()
         if day > day_to: break
 
     return result
+
+def search_cycle_ymd(cd, cy=None, cm=None, year_from=1800, year_to=datetime.now().year+1, timezone=pytz.utc):
+    result = []
+    if cy is None:
+        date_list = search_cycle_day(cd, year_from=year_from, year_to=year_to)
+        for date in date_list:
+            dt = timezone.localize(datetime(date.year, date.month, date.day))
+            (_cy, _cm, _cd) = cycle_ymd(dt)
+            if cm is None or _cm == cm:
+                result.append((dt, _cy, _cm, _cd))
+    else:
+        for year in search_cycle_year(cy, year_from, year_to):
+            date_list = search_cycle_day(cd, year_from=year, year_to=year+1)
+            for date in date_list:
+                dt = timezone.localize(datetime(date.year, date.month, date.day))
+                (_cy, _cm, _cd) = cycle_ymd(dt)
+                if _cy == cy and (cm is None or _cm == cm):
+                    result.append((dt, _cy, _cm, _cd))
+    
+    return result
+    
