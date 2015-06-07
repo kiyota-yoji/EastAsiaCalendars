@@ -80,12 +80,6 @@ The solar terms of 2015, for Traditional Chinese (in Hong Kong Time), Simplified
  1 雨水 2015-02-19 07:49 CST
  2 惊蛰 2015-03-06 05:55 CST
  3 春分 2015-03-21 06:45 CST
-小寒 2015-01-06 00:20 CST
-大寒 2015-01-20 17:43 CST
-立春 2015-02-04 11:58 CST
-雨水 2015-02-19 07:49 CST
-惊蛰 2015-03-06 05:55 CST
-春分 2015-03-21 06:45 CST
 ...
 20 大雪 2015-12-07 18:53 CST
 21 冬至 2015-12-22 12:47 CST
@@ -259,18 +253,27 @@ wood-yin goat|earth-yang tiger|water-yang rat  # 乙未年 戊寅月 壬子日
 
 ## History
 
+### Version 0.0.4
+
+- Implemented methods for finding years, months, days, and dates which have specified sexagenary cycle year/month/day
+	- get_specified_cycle_years()
+	- get_specified_cycle_months()
+	- get_specified_cycle_days()
+	- get_specified_cycle_dates()
+
+
 ### Version 0.0.3 (2015-05-17)
 
-- Add an "id" option to get_cycle_year(), get_cycle_month(), and get_cycle_day()
+- Added an "id" option to get_cycle_year(), get_cycle_month(), and get_cycle_day()
 	- this option enabled the methods to return IDs (0-59) of the sexagenary cycle.
-- Refine implementations of solar_term_finder()
-- Renumber IDs of solar terms
+- Refined implementations of solar_term_finder()
+- Renumbered IDs of solar terms
 	- begins at "start of spring" (0=start of spring - 23=major cold)
 
 ### Version 0.0.2 (2015-05-13)
 
 - Fixed documents (README.md, README_ja.md)
-- Add install_requires to setup.py
+- Added install_requires to setup.py
 	- required packages PyEphem, pytz, and jdcal are automatically installed via pip
 - Fixed a earthly branch in English
 
@@ -281,7 +284,6 @@ wood-yin goat|earth-yang tiger|water-yang rat  # 乙未年 戊寅月 壬子日
 
 ## TODO
 
-- a method for finding days which have a specified sexagenary cycle
 - lunisolar calendars
 - regnal years
 - adapt to Chinese cycle years
