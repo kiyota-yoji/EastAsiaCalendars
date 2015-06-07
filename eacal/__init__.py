@@ -2,7 +2,7 @@
 
 from . import cycle
 from . import solar_terms
-from .lang import Lang, str_solar_terms, str_cycle, str_jp_seasonal_days, id_solar_terms
+from .lang import Lang, str_solar_terms, str_cycle, str_jp_seasonal_days, id_solar_terms, id_cycle
 
 import pytz
 from datetime import datetime, timedelta
@@ -13,7 +13,7 @@ class EACal:
     def __init__(self, lang=Lang.EN, tz=pytz.utc,
                  zh_t=False, zh_s=False,
                  ja=False, ko=False,
-                 vi=False):
+                 vi=False, year_range=(1800, datetime.now().year+1)):
         self.lang = lang
         self.tz = tz
         if zh_t:
@@ -31,6 +31,7 @@ class EACal:
         elif vi:
             self.lang = Lang.VI
             self.tz = pytz.timezone('Asia/Ho_Chi_Minh')
+        self.year_range = year_range
 
     def get_cycle_year(self, year, id=False):
         if id:
@@ -123,7 +124,6 @@ class EACal:
             result.append(d_new)
 
         return result
-            
 
     def get_specified_solar_term(self, year, st):
 
@@ -138,3 +138,35 @@ class EACal:
         st_dt_utc = solar_terms.specified_solar_term(year, st_id)
         st_dt_local = st_dt_utc.astimezone(self.tz)
         return (st_str, st_id, st_dt_local)
+
+    def get_specified_cycle_years(self, cy):
+        cy_str, cy_id = self._get_cycle_id(cy)
+
+        years_list = cycle.search_cycle_year(cy_id, year_from=self.year_range[0],
+                                             year_to=self.year_range[1])
+        return (cy_str, cy_id, years_list)
+
+    def get_specified_cycle_months(self, cm):
+        cm_str, cm_id = self._get_cycle_id(cm)
+
+        months_list = cycle.search_cycle_month(cm_id, year_from=self.year_range[0],
+                                               year_to=self.year_range[1])
+        return (cm_str, cm_id, months_list)
+
+    def get_specified_cycle_days(self, cd):
+        cd_str, cd_id = self._get_cycle_id(cd)
+
+        days_list = cycle.search_cycle_day(cd_id, year_from=self.year_range[0],
+                                           year_to=self.year_range[1])
+        return (cd_str, cd_id, days_list)
+        
+    def _get_cycle_id(self, c):
+        if isinstance(c, int):
+            c_id = c
+            c_str = str_cycle(c_id, self.lang)
+        else:
+            # find c_id by searching
+            c_id = id_cycle(c, self.lang)
+            c_str = str_cycle(c_id, self.lang)
+        return (c_str, c_id)
+

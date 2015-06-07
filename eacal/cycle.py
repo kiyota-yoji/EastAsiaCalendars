@@ -30,24 +30,23 @@ def search_cycle_year(cy, year_from=1800, year_to=datetime.now().year+1):
     result = []
     year = year_from + (cy - cycle_year(year_from)) % 60  # find the first year whose cycle year is equal to cy
     while True:
+        if year > year_to: break
         result.append(year)
         year += 60
-        if year > year_to: break
     return result
 
 def search_cycle_month(cm, year_from=1800, year_to=datetime.now().year+1):
     result = []
     year = year_from
     while True:
+        if year > year_to: break
         for month in range(1, 12+1):
             if cycle_month(year, month) == cm:  # find the first month whose cycle month is equal to cm
-                result.append((year, month))
                 year_from = year
                 for year in range(year_from, year_to+1, 5):
                     result.append((year, month))
                 break
         year += 1
-        if year > year_to: break
                 
     return result
 
@@ -57,9 +56,9 @@ def search_cycle_day(cd, year_from=datetime.now().year-1, year_to=datetime.now()
     day_to = date(year_to+1, 1, 1) - timedelta(days=1)
     day = day_from + timedelta(days=((cd - cycle_day(day_from)) % 60))
     while True:
+        if day > day_to: break
         result.append(day)
         day += timedelta(days=60)
-        if day > day_to: break
 
     return result
 
