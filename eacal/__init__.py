@@ -159,6 +159,29 @@ class EACal:
         days_list = cycle.search_cycle_day(cd_id, year_from=self.year_range[0],
                                            year_to=self.year_range[1])
         return (cd_str, cd_id, days_list)
+
+    def get_specified_cycle_dates(self, cd, cy=None, cm=None):
+        cd_str, cd_id = self._get_cycle_id(cd)
+        if cy is None:
+            cy_str, cy_id = None, None
+        else:
+            cy_str, cy_id = self._get_cycle_id(cy)
+        if cm is None:
+            cm_str, cm_id = None, None
+        else:
+            cm_str, cm_id = self._get_cycle_id(cm)
+
+        dates_list = cycle.search_cycle_ymd(cd_id, cy=cy_id, cm=cm_id,
+                                            year_from=self.year_range[0],
+                                            year_to=self.year_range[1])
+        result = []
+        for t in dates_list:
+            result.append((t[0],
+                           str_cycle(t[1], self.lang),
+                           str_cycle(t[2], self.lang),
+                           str_cycle(t[3], self.lang),
+                           t[1], t[2], t[3]))
+        return result
         
     def _get_cycle_id(self, c):
         if isinstance(c, int):
